@@ -170,9 +170,10 @@
   /* 单个菜单 */
 }
 .w-e-toolbar .w-e-menu {
+  font-size: 16px;
   position: relative;
   text-align: center;
-  padding: 5px 10px;
+  padding: 2px 10px;
   cursor: pointer;
 }
 .w-e-toolbar .w-e-menu i {
@@ -192,7 +193,7 @@
   position: absolute;
   top: 0;
   left: 50%;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-top: 0;
   box-shadow: 1px 1px 2px #ccc;
   color: #333;
