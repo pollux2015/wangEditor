@@ -51,7 +51,7 @@ Source.prototype = {
             editor.$textContainerElem.show()
             editor.$sourceContainerElem.hide()
             
-            const onchange = editor.config.onchange;
+            const onchange = editor.config.onchange
             if(onchange && typeof onchange === 'function'){
                 // 触发配置的 onchange 函数
                 onchange(editor.$sourceContainerElem[0].value)
