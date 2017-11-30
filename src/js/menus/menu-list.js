@@ -17,8 +17,11 @@ MenuConstructors.link = Link
 import Italic from './italic/index.js'
 MenuConstructors.italic = Italic
 
-import Redo from './redo/index.js'
-MenuConstructors.redo = Redo
+// import Redo from './redo/index.js'
+// MenuConstructors.redo = Redo
+
+// import Undo from './undo/index.js'
+// MenuConstructors.undo = Undo
 
 import StrikeThrough from './strikethrough/index.js'
 MenuConstructors.strikeThrough = StrikeThrough
@@ -26,8 +29,6 @@ MenuConstructors.strikeThrough = StrikeThrough
 import Underline from './underline/index.js'
 MenuConstructors.underline = Underline
 
-import Undo from './undo/index.js'
-MenuConstructors.undo = Undo
 
 import List from './list/index.js'
 MenuConstructors.list = List
@@ -41,23 +42,28 @@ MenuConstructors.foreColor = ForeColor
 import BackColor from './backColor/index.js'
 MenuConstructors.backColor = BackColor
 
-import Quote from './quote/index.js'
-MenuConstructors.quote = Quote
+// import Quote from './quote/index.js'
+// MenuConstructors.quote = Quote
 
-import Code from './code/index.js'
-MenuConstructors.code = Code
+// import Code from './code/index.js'
+// MenuConstructors.code = Code
 
-import Emoticon from './emoticon/index.js'
-MenuConstructors.emoticon = Emoticon
+// import Emoticon from './emoticon/index.js'
+// MenuConstructors.emoticon = Emoticon
 
 import Table from './table/index.js'
 MenuConstructors.table = Table
 
-import Video from './video/index.js'
-MenuConstructors.video = Video
+// import Video from './video/index.js'
+// MenuConstructors.video = Video
 
 import Image from './img/index.js'
 MenuConstructors.image = Image
+
+import Source from './source/index.js'
+MenuConstructors.source = Source
+
+
 
 // 吐出所有菜单集合
 export default MenuConstructors

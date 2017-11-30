@@ -23,12 +23,13 @@ const config = {
         'video',
         'code',
         'undo',
-        'redo'
+        'redo',
+        'source'
     ],
 
     colors: [
         '#000000',
-        '#eeece0',
+        '#fff',
         '#1c487f',
         '#4d80bf',
         '#c24f4a',

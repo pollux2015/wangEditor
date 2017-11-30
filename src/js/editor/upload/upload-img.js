@@ -244,7 +244,8 @@ UploadImg.prototype = {
                             return
                         }
                     }
-                    if (!hooks.customInsert && result.errno != '0') {
+
+                    if (!hooks.customInsert && result.code != 1) {
                         // hook - fail
                         if (hooks.fail && typeof hooks.fail === 'function') {
                             hooks.fail(xhr, editor, result)
@@ -258,10 +259,16 @@ UploadImg.prototype = {
                             hooks.customInsert(this.insertLinkImg.bind(this), result, editor)
                         } else {
                             // 将图片插入编辑器
+                            var isArray = Object.prototype.toString.call(result.data)=='[object Array]'
                             const data = result.data || []
-                            data.forEach(link => {
-                                this.insertLinkImg(link)
-                            })
+                            if(isArray){
+                                data.forEach(link => {
+                                    this.insertLinkImg(link)
+                                })
+                            }else{
+                                this.insertLinkImg(data.url)
+                            }
+                            
                         }
 
                         // hook - success

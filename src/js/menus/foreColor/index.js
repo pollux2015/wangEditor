@@ -23,7 +23,7 @@ function ForeColor(editor) {
         $title: $('<p>文字颜色</p>'),
         type: 'inline-block', // droplist 内容以 block 形式展示
         list: colors.map(color => {
-            return { $elem: $(`<i style="color:${color};" class="w-e-icon-pencil2"></i>`), value: color }
+            return { $elem: $(`<i style="color:${color == '#fff' ? '#eeece0' : color};" class="w-e-icon-pencil2"></i>`), value: color }
         }),
         onClick: (value) => {
             // 注意 this 是指向当前的 ForeColor 对象

@@ -49,10 +49,29 @@
     </div>
 
     <!-- 引用js -->
-    <script type="text/javascript" src="/wangEditor.js"></script>
+    <script type="text/javascript" src="../release/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor
         var editor = new E('#div1')
+        editor.customConfig = {
+            uploadImgMaxLength: 1,
+            uploadImgShowBase64: false,
+            uploadImgServer: 'http://doc210.uooc.online/upload/index',
+            uploadFileName: 'file',
+            uploadImgMaxSize: 2 * 1024 * 1024, // 将图片大小限制为 2M
+            uploadImgParams: {
+                id: '184056211',
+                type: 'user'
+            },
+            success: function (xhr, editor, result) {
+                // 图片上传并返回结果，图片插入成功之后触发
+                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+            },
+            error: function (xhr, editor) {
+                // 图片上传出错时触发
+                // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+            }
+        }
         editor.create()
     </script>
 </body>
