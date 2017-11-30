@@ -17,6 +17,9 @@
   display: table;
   clear: both;
 }
+.w-e-text-container {
+  font-size: 15px;
+}
 
 .w-e-toolbar .w-e-droplist {
   position: absolute;
