@@ -20,6 +20,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.idea
 
 # =========================
 # Operating System Files
