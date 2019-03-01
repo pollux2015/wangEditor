@@ -67,7 +67,7 @@ Text.prototype = {
     },
 
     // 获取 设置 html
-    html: function (val) {
+    html: function (val, noSelection) {
         const editor = this.editor
         const $textElem = editor.$textElem
         if (val == null) {
@@ -76,7 +76,7 @@ Text.prototype = {
             $textElem.html(val)
 
             // 初始化选取，将光标定位到内容尾部
-            editor.initSelection()
+            !noSelection && editor.initSelection()
         }
     },
 

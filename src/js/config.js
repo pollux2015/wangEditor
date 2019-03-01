@@ -24,7 +24,8 @@ const config = {
         'code',
         'undo',
         'redo',
-        'source'
+        'source',
+        'scode'
     ],
 
     colors: [
