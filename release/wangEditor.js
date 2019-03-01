@@ -2435,65 +2435,55 @@ Image.prototype = {
     bold-menu
 */
 // 构造函数
-function Scode(editor) {
+function Source(editor) {
     this.editor = editor;
-    this.$elem = $('<div class="w-e-menu"> <i class="w-e-icon-scode">\u6E90\u7801</i></div>');
-    this.type = 'click';
 
+    this.$elem = $('<div class="w-e-menu">\n            <i class="w-e-icon-terminal"><i/>\n        </div>');
+    this.type = 'click';
+    var height = editor.$textContainerElem[0].style.height;
+    var style_ = 'display: none; width: 100%; line-height: 1.6; font-size: 14px; outline:none; resize: none; box-sizing: border-box; padding: 10px; border:1px solid #ccc; border-top:none; z-index:10000; height: ' + height;
+    this.editor.$sourceContainerElem = $('<textarea class="w-e-source-container" style="' + style_ + '"> </textarea>');
+    this.editor.$sourceContainerElem.insertAfter(editor.$textContainerElem);
     // 当前是否 active 状态
     this._active = false;
-
-    var style_ = 'width: 100%; height: 100%; border: none; padding: 10px; line-height: 1.5; font-size: 16px; display: none;';
-    this.editor.$scodeElement = $('<textarea class="w-e-scode-container" style="' + style_ + '"> </textarea>');
-    this.editor.$textContainerElem.append(editor.$scodeElement);
-
-    this.setToSource();
-
-    var that = this;
-    editor.$scodeElement[0].onkeyup = function () {
-        that.setToEditor(this.value);
-    };
 }
 
 // 原型
-Scode.prototype = {
-    constructor: Scode,
-
+Source.prototype = {
+    constructor: Source,
     // 点击事件
     onClick: function onClick(e) {
         // 点击菜单将触发这里
 
         var editor = this.editor;
-        var $elem = this.$elem;
-
-        // 执行 scode 命令
-        editor.cmd.do('scode');
-
-        if (!this._active) {
-            this._active = true;
-            $elem.addClass('w-e-active');
-            editor.$textElem.hide();
-            editor.$scodeElement.show();
-            this.setToSource();
+        // 执行 bold 命令
+        editor.cmd.do('source');
+        this._active = !this._active;
+        if (this._active) {
+            editor.$sourceContainerElem[0].value = editor.txt.html();
         } else {
-            this._active = false;
-            $elem.removeClass('w-e-active');
-            editor.$textElem.show();
-            editor.$scodeElement.hide();
+            editor.txt.html(editor.$sourceContainerElem[0].value);
         }
     },
-    setToSource: function setToSource() {
+
+    // 试图改变 active 状态
+    tryChangeActive: function tryChangeActive(e) {
         var editor = this.editor;
-        var editorHtml = editor.txt.html();
-        this.editor.$scodeElement[0].value = editorHtml;
-    },
-    setToEditor: function setToEditor(html) {
-        var editor = this.editor;
-        var onchange = editor.config.onchange;
-        if (onchange && typeof onchange === 'function') {
-            // 触发配置的 onchange 函数
-            editor.txt.html(html, true);
-            onchange(html);
+        var $elem = this.$elem;
+        if (this._active) {
+            editor.$textContainerElem.hide();
+            editor.$sourceContainerElem.show();
+            $elem.addClass('w-e-active');
+        } else {
+            editor.$textContainerElem.show();
+            editor.$sourceContainerElem.hide();
+
+            var onchange = editor.config.onchange;
+            if (onchange && typeof onchange === 'function') {
+                // 触发配置的 onchange 函数
+                onchange(editor.$sourceContainerElem[0].value);
+            }
+            $elem.removeClass('w-e-active');
         }
     }
 };
@@ -2547,10 +2537,7 @@ MenuConstructors.table = Table;
 
 MenuConstructors.image = Image;
 
-// import Source from './source/index.js'
-// MenuConstructors.source = Source
-
-MenuConstructors.scode = Scode;
+MenuConstructors.source = Source;
 
 /*
     菜单集合
